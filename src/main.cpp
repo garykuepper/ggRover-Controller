@@ -9,6 +9,9 @@
 
 DisplayDriver displayDriver(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_RESET, SCREEN_ADDRESS);
 DS4ControllerDriver ds4(0x29);
+int timer = 0;
+int read_interval = 100;
+
 
 void setup()
 {
@@ -20,22 +23,16 @@ void setup()
 
 void loop()
 {
-    ds4.update();
-    if (ds4.isConnected())
+    if (millis() > timer)
     {
-        displayDriver.showDisplay(
-            ds4.getLeftJoystickY(),
-            ds4.getLeftJoystickX(),
-            ds4.getRightJoystickY(),
-            ds4.getRightJoystickX(),
-            ds4.getButtonL1(),
-            ds4.getL2(),
-            ds4.getButtonR1(),
-            ds4.getR2(),
-            ds4.getButtonX(),
-            ds4.getButtonCircle(),
-            ds4.getButtonSquare(),
-            ds4.getButtonTriangle()
-        );
+        // Serial.println("am i working?");
+        timer = millis() + read_interval;
+        ds4.get_ps4();
+
+        if (ds4.ps4_ok)
+        {
+            showStatus();
+            showDisplay();
+        }
     }
 }
