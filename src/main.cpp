@@ -26,6 +26,7 @@ void loop()
         ds4.get_ps4();
         if (ds4.ps4_ok)
         {
+            //display.showText();
             display.showDS4(ds4);
         }
 

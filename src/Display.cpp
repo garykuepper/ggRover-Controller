@@ -25,7 +25,7 @@ void Display::showText()
     delay(100);
 }
 
-void Display::showDS4(DS4 &ds4)
+void Display::showDS4(const DS4 &ds4)
 {
 
         disp.clearDisplay();

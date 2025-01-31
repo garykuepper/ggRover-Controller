@@ -20,7 +20,7 @@ public:
     Display();
     void init();
     void showText();
-    void showDS4(DS4 &ds4);
+    void showDS4(const DS4 &ds4);
 
 private:
     Adafruit_SSD1306 disp;
