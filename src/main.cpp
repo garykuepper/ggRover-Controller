@@ -2,10 +2,10 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <DS4_I2C_CONTROL.h>
+#include <Display.h>
+#include <DS4.h>
 
-
-#define DEBUG true
+#define DEBUG false
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
 
@@ -19,8 +19,8 @@
 unsigned long timer;
 uint32_t baudRate = 115200;
 uint8_t read_interval = 50;
-DS4_I2C_CONTROL ds4 = DS4_I2C_CONTROL(0x29);
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+DS4 ds4;
+Display display;
 
 
 void showStatus();
