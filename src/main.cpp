@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "DisplayDriver.h"
-#include "DS4ControllerDriver.h"
+#include "DS4Control.h"
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 32
@@ -8,17 +8,17 @@
 #define SCREEN_ADDRESS 0x3C
 
 DisplayDriver displayDriver(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_RESET, SCREEN_ADDRESS);
-DS4ControllerDriver ds4(0x29);
+DS4_I2C_CONTROL ds4(0x29);
 int timer = 0;
 int read_interval = 100;
 
 
 void setup()
 {
-    Serial.begin(115200);
+    //Serial.begin(115200);
     displayDriver.init();
-    ds4.init();
-    displayDriver.showText("BRO");
+    ds4.begin();
+
 }
 
 void loop()
