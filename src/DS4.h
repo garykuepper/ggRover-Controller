@@ -16,7 +16,7 @@
 class DS4 {
 public:
     DS4(uint8_t address = DEFAULT_I2C_ADDRESS);
-    void begin(void);
+    void begin();
     void get_ps4();
     unsigned char* get_ps4_i2c();
     bool ps4_ok;
@@ -59,7 +59,7 @@ private:
     uint8_t _i2caddr;
     uint8_t _i2clength;
     unsigned char ps4_ic2[IC2_LENGTH];
-    void decode_ps4(void);
+    void decode_ps4();
 };
 
 

@@ -12,7 +12,7 @@ DS4::DS4(uint8_t address) {
   ps4_ok = false;
 }
 
-void DS4::begin(void) {
+void DS4::begin() {
  WIRE.begin();
 }
 
@@ -36,7 +36,7 @@ void DS4::get_ps4()
 }
 
 // Decode PS4 Data and move to struct
-void DS4::decode_ps4(void){
+void DS4::decode_ps4(){
 
    ps4_ok = false;
 
