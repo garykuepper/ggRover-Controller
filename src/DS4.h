@@ -5,7 +5,8 @@
 #ifndef DS4_H
 #define DS4_H
 
-
+#include <Arduino.h>
+#include <Wire.h>
 #define WIRE Wire
 
 
