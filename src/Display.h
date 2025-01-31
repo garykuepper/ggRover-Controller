@@ -5,6 +5,7 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 #include <Adafruit_GFX.h>
+#include <Arduino.h>
 #include <Adafruit_SSD1306.h>
 #include <SimpleMovingAverage.h>
 #include <DS4.h>
