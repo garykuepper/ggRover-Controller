@@ -1,7 +1,8 @@
 #include "Display.h"
 
 Display::Display()
-    : disp(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET) {}
+    : disp(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET),
+      sma(10) {}
 
 void Display::init()
 {
@@ -27,33 +28,34 @@ void Display::showText()
 
 void Display::showDS4(const DS4 &ds4)
 {
-
-        disp.clearDisplay();
-        disp.setTextSize(1); // Draw 2X-scale text
-        disp.setTextColor(SSD1306_WHITE);
-        disp.setCursor(10, 0);
-        disp.println((String)"L_Y: " + ds4.l_joystick_y);
-        disp.setCursor(10, 8);
-        disp.println((String)"L_X: " + ds4.l_joystick_x);
-        disp.setCursor(64, 0);
-        disp.println((String)"R_Y: " + ds4.r_joystick_y);
-        disp.setCursor(64, 8);
-        disp.println((String)"R_X: " + ds4.r_joystick_x);
-        disp.setCursor(10, 16);
-        disp.println((String)"L1: " + ds4.button_l1);
-        disp.setCursor(10, 24);
-        disp.println((String)"L2: " + ds4.l2);
-        disp.setCursor(64, 16);
-        disp.println((String)"R1: " + ds4.button_r1);
-        disp.setCursor(64, 24);
-        disp.println((String)"R2: " + ds4.r2);
-        disp.setCursor(120, 0);
-        disp.println((String)ds4.button_x);
-        disp.setCursor(120, 8);
-        disp.println((String)ds4.button_circle);
-        disp.setCursor(120, 16);
-        disp.println((String)ds4.button_square);
-        disp.setCursor(120, 24);
-        disp.println((String)ds4.button_triangle);
-        disp.display();
+    sma.updateAverage(ds4.l_joystick_y);
+    unsigned char ly = sma.getAverage();
+    disp.clearDisplay();
+    disp.setTextSize(1); // Draw 2X-scale text
+    disp.setTextColor(SSD1306_WHITE);
+    disp.setCursor(10, 0);
+    disp.println((String)"L_Y: " + ly);
+    disp.setCursor(10, 8);
+    disp.println((String)"L_X: " + ds4.l_joystick_x);
+    disp.setCursor(64, 0);
+    disp.println((String)"R_Y: " + ds4.r_joystick_y);
+    disp.setCursor(64, 8);
+    disp.println((String)"R_X: " + ds4.r_joystick_x);
+    disp.setCursor(10, 16);
+    disp.println((String)"L1: " + ds4.button_l1);
+    disp.setCursor(10, 24);
+    disp.println((String)"L2: " + ds4.l2);
+    disp.setCursor(64, 16);
+    disp.println((String)"R1: " + ds4.button_r1);
+    disp.setCursor(64, 24);
+    disp.println((String)"R2: " + ds4.r2);
+    disp.setCursor(120, 0);
+    disp.println((String)ds4.button_x);
+    disp.setCursor(120, 8);
+    disp.println((String)ds4.button_circle);
+    disp.setCursor(120, 16);
+    disp.println((String)ds4.button_square);
+    disp.setCursor(120, 24);
+    disp.println((String)ds4.button_triangle);
+    disp.display();
 }

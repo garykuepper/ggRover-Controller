@@ -1,9 +1,7 @@
-#include <Arduino.h>//
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <Arduino.h>
 #include <Display.h>
 #include <DS4.h>
+
 
 unsigned long timer;
 uint8_t read_interval = 50;
