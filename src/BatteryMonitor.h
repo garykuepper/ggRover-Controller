@@ -11,12 +11,15 @@ class BatteryMonitor {
 public:
 
     void init();
-    float getBatteryLevel();
-    BatteryMonitor(int pin);
-
+    double getBatteryLevel();
+    int getRaw();
+    BatteryMonitor(int pin, double vRef = 5.0);
+    double getBatteryPercentage();
 
 private:
     int analogPin;
+    double referenceVoltage;
+    const int analogMax = 1023;
 
 };
 

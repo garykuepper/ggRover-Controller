@@ -26,11 +26,14 @@ public:
     void init();
     void showText();
     void showDS4(const DS4 &ds4);
+    void showSplashScreen();
 
 private:
     Adafruit_SSD1306 disp;
     SimpleMovingAverage sma;
     BatteryMonitor bm;
+    int lineHeight = 10;
+    static const unsigned char ggbytesSplash[];
 };
 
 

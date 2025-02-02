@@ -10,11 +10,11 @@
 class SimpleMovingAverage {
 
 private:
-    unsigned char *readings;  // Dynamically allocated array to store readings
+    double *readings;  // Dynamically allocated array to store readings
     int N;                    // Window size (number of samples)
     int readIndex;            // Index for circular buffer
-    long total;               // Running sum of the readings
-    unsigned char average;    // The current moving average (rounded)
+    double total;               // Running sum of the readings
+    double average;    // The current moving average (rounded)
 
 public:
     // Constructor: Initializes the moving average with a given window size
@@ -24,10 +24,10 @@ public:
     ~SimpleMovingAverage();
 
     // Updates the moving average with a new reading
-    void updateAverage(unsigned char newReading);
+    void updateAverage(double newReading);
 
     // Returns the current moving average
-    unsigned char getAverage();
+    double getAverage();
 };
 
 

@@ -4,7 +4,7 @@
 
 
 unsigned long timer;
-uint8_t read_interval = 50;
+uint8_t read_interval = 10;
 DS4 ds4;
 Display display;
 
