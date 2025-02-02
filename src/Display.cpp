@@ -4,6 +4,7 @@ Display::Display()
 {
     disp = Adafruit_SSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
     sma = SimpleMovingAverage(10);
+    bm = BatteryMonitor(A0);
 }
 
 void Display::init()
@@ -59,5 +60,7 @@ void Display::showDS4(const DS4 &ds4)
     disp.println((String)ds4.button_square);
     disp.setCursor(120, 24);
     disp.println((String)ds4.button_triangle);
+    disp.setCursor(64, 32);
+    disp.println((String)bm.getBatteryLevel());
     disp.display();
 }
