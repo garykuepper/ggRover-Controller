@@ -87,11 +87,11 @@ void Display::init()
 {
     if (!disp.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
         Serial.println(F("SSD1306 allocation failed"));
-        while (true);
+        //while (true);
     }
-	disp.display();
-	delay(2000);
-    //showSplashScreen();
+	//disp.display();
+	//delay(2000);
+    showSplashScreen();
     disp.clearDisplay();
 }
 
