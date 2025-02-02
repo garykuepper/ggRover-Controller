@@ -1,9 +1,10 @@
 #include "Display.h"
 
 Display::Display()
+    : disp(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET),
+      sma(10)
 {
-    disp = Adafruit_SSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-    sma = SimpleMovingAverage(10);
+    // Additional setup code if needed
 }
 
 void Display::init()
