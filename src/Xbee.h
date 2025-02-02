@@ -15,7 +15,7 @@ private:
     int baudRate;
 
 public:
-    Xbee(uint8_t rxPin, uint8_t txPin, int baud = 9600);
+    Xbee(uint8_t rxPin, uint8_t txPin, int baud = 57600);
     void begin();
     void send(const String &data);
     void send(const unsigned char* data, size_t length);
