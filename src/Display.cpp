@@ -89,7 +89,9 @@ void Display::init()
         Serial.println(F("SSD1306 allocation failed"));
         while (true);
     }
-    showSplashScreen();
+	disp.display();
+	delay(2000);
+    //showSplashScreen();
     disp.clearDisplay();
 }
 
