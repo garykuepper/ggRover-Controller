@@ -22,12 +22,12 @@ void Xbee::send(const unsigned char* data, size_t length) {
     }
 }
 
-String Xbee::receive() {
-    String receivedData = "";
-    while (xbeeSerial.available()) {
-        receivedData += (char)xbeeSerial.read();
+size_t Xbee::receive(unsigned char* buffer, size_t maxLength) {
+    size_t bytesRead = 0;
+    while (xbeeSerial.available() && bytesRead < maxLength) {
+        buffer[bytesRead++] = xbeeSerial.read();
     }
-    return receivedData;
+    return bytesRead;
 }
 
 bool Xbee::available() {

@@ -19,7 +19,7 @@ public:
     void begin();
     void send(const String &data);
     void send(const unsigned char* data, size_t length);
-    String receive();
+    size_t receive(unsigned char* buffer, size_t maxLength);  // New function
     bool available();
 };
 
