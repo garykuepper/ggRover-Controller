@@ -137,11 +137,14 @@ void Display::showDS4(const DS4 &ds4)
 
     disp.println((String)ds4.battery);
 
-	sma.updateAverage(bm.getBatteryLevel());
+
+	sma.updateAverage(bm.getBatteryPercentage());
+
+
     disp.setCursor(64, 4*lineHeight);
-    disp.println((String) sma.getAverage() + "V");
+    disp.println((String)bm.getBatteryLevel() + "V");
 	disp.setCursor(64, 5*lineHeight);
-	disp.println((String) bm.getBatteryPercentage() + "%");
+	disp.println((String)round(sma.getAverage()) + "%");
 
 
     disp.display();
