@@ -18,7 +18,7 @@ void Xbee::send(const String &data)
 }
 
 void Xbee::send(const unsigned char *data, size_t length){
-    xbeeSerial.write(data, length)
+    xbeeSerial.write(data, length);
 
     //   for (size_t i = 0; i < length; i++) {
     //       xbeeSerial.write(data[i]);

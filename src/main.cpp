@@ -24,12 +24,17 @@ void loop()
     {
 
         timer = millis() + read_interval;
+
+        uint8_t batteryPercentage = static_cast<uint8_t>(bm.getBatteryPercentage());
+        xbee.send(&batteryPercentage, sizeof(batteryPercentage));
+
         ds4.get_ps4();
+        
         if (ds4.ps4_ok)
         {
             // display.showText();
             display.showDS4(ds4, bm);
-            xbee.send(ds4.get_ps4_i2c(), ds4.get_i2c_length());
+            
         }
     }
 }
