@@ -19,6 +19,7 @@ public:
     void begin();
     void get_ps4();
     unsigned char* get_ps4_i2c();
+    int get_i2c_length();
     bool ps4_ok;
 
     unsigned char  l_joystick_x;

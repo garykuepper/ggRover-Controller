@@ -80,3 +80,8 @@ unsigned char* DS4::get_ps4_i2c()
 {
     return ps4_ic2;
 }
+
+int DS4::get_i2c_length()
+{
+    return (int)_i2clength;
+}

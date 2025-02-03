@@ -5,8 +5,8 @@
 #include "Xbee.h"
 
 
-Xbee::Xbee(uint8_t rxPin, uint8_t txPin, int baud)
-    : xbeeSerial(rxPin, txPin), baudRate(baud) {}
+Xbee::Xbee(HardwareSerial &serialPort, int baud)
+    : xbeeSerial(serialPort), baudRate(baud) {}
 
 void Xbee::begin() {
     xbeeSerial.begin(baudRate);
