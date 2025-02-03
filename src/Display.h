@@ -12,11 +12,8 @@
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 
-
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define OLED_RESET -1       // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
-
-
 
 class Display
 {
@@ -28,10 +25,9 @@ public:
     void showSplashScreen();
 
 private:
-    Adafruit_SSD1306 disp;    
+    Adafruit_SSD1306 disp;
     int lineHeight = 10;
     static const unsigned char ggbytesSplash[];
 };
 
-
-#endif //DISPLAY_H
+#endif // DISPLAY_H

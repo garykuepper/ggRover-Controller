@@ -22,17 +22,14 @@ void loop()
 {
     if (millis() > timer)
     {
-        
 
         timer = millis() + read_interval;
         ds4.get_ps4();
         if (ds4.ps4_ok)
         {
-            //display.showText();
+            // display.showText();
             display.showDS4(ds4, bm);
             xbee.send(ds4.get_ps4_i2c(), ds4.get_i2c_length());
         }
-
     }
 }
-
