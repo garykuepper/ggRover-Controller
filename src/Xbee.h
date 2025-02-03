@@ -1,27 +1,23 @@
-//
-// Created by tr0n on 2/1/2025.
-//
-
 #ifndef XBEE_H
 #define XBEE_H
 
 #include <Arduino.h>
-
+#include <Stream.h>  // Base class for both HardwareSerial and SoftwareSerial
 
 class Xbee {
 private:
-    HardwareSerial &xbeeSerial;
+    Stream &xbeeSerial;
     int baudRate;
+    bool shouldInit;  // Flag to control whether we call begin()
 
 public:
-    Xbee(HardwareSerial &serialPort = Serial1, int baud = 57600);
+    Xbee(Stream &serialPort, int baud = 57600, bool initSerial = false);  // Add initSerial flag
     void begin();
     void send(const String &data);
     void send(const unsigned char* data, size_t length);
-    size_t receive(unsigned char* buffer, size_t maxLength);  // New function
+    size_t receive(unsigned char* buffer, size_t maxLength);
+    String receiveString(char terminator = '\n');
     bool available();
 };
 
-
-
-#endif //XBEE_H
+#endif // XBEE_H

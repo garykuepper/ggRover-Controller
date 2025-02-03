@@ -1,41 +1,56 @@
-//
-// Created by tr0n on 2/1/2025.
-//
-
 #include "Xbee.h"
 
-Xbee::Xbee(HardwareSerial &serialPort, int baud)
-    : xbeeSerial(serialPort), baudRate(baud) {}
+Xbee::Xbee(Stream &serialPort, int baud, bool initSerial)
+    : xbeeSerial(serialPort), baudRate(baud), shouldInit(initSerial) {}
 
-void Xbee::begin()
-{
-    xbeeSerial.begin(baudRate);
+void Xbee::begin() {
+    if (shouldInit) {
+        // Call begin() only if using HardwareSerial
+        ((HardwareSerial*)&xbeeSerial)->begin(baudRate);
+    }
 }
 
-void Xbee::send(const String &data)
-{
+void Xbee::send(const String &data) {
     xbeeSerial.print(data);
 }
 
-void Xbee::send(const unsigned char *data, size_t length){
+void Xbee::send(const unsigned char *data, size_t length) {
     xbeeSerial.write(data, length);
-
-    //   for (size_t i = 0; i < length; i++) {
-    //       xbeeSerial.write(data[i]);
-    //    }
 }
 
-size_t Xbee::receive(unsigned char *buffer, size_t maxLength)
-{
+size_t Xbee::receive(unsigned char *buffer, size_t maxLength) {
     size_t bytesRead = 0;
-    while (xbeeSerial.available() && bytesRead < maxLength)
-    {
+    while (xbeeSerial.available() && bytesRead < maxLength) {
         buffer[bytesRead++] = xbeeSerial.read();
     }
+
+    if (bytesRead > 0) {
+        Serial.print("Received: ");
+        for (size_t i = 0; i < bytesRead; i++) {
+            Serial.write(buffer[i]);
+        }
+        Serial.println();
+    }
+
     return bytesRead;
 }
 
-bool Xbee::available()
-{
+String Xbee::receiveString(char terminator) {
+    String receivedData = "";
+    while (xbeeSerial.available()) {
+        char c = xbeeSerial.read();
+        if (c == terminator) break;
+        receivedData += c;
+    }
+
+    if (receivedData.length() > 0) {
+        Serial.print("Received String: ");
+        Serial.println(receivedData);
+    }
+
+    return receivedData;
+}
+
+bool Xbee::available() {
     return xbeeSerial.available();
 }
