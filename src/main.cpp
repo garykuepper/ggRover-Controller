@@ -7,6 +7,7 @@ unsigned long timer;
 uint8_t read_interval = 10;
 DS4 ds4;
 Display display;
+BatteryMonitor bm(A0, 5.0);
 
 void setup()
 {
@@ -26,7 +27,7 @@ void loop()
         if (ds4.ps4_ok)
         {
             //display.showText();
-            display.showDS4(ds4);
+            display.showDS4(ds4, bm);
         }
 
     }

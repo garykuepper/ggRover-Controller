@@ -76,9 +76,7 @@ const unsigned char Display::ggbytesSplash[] PROGMEM = {
 
 
 Display::Display()
-    : disp(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET),
-      sma(20),
-      bm(A0)
+    : disp(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET)      
 {
 
 }
@@ -106,7 +104,7 @@ void Display::showText()
     delay(100);
 }
 
-void Display::showDS4(const DS4 &ds4)
+void Display::showDS4(const DS4 &ds4, BatteryMonitor &bm)
 {
     disp.clearDisplay();
     disp.setTextSize(1); // Draw 2X-scale text
@@ -139,14 +137,10 @@ void Display::showDS4(const DS4 &ds4)
 
     disp.println((String)ds4.battery);
 
-
-	sma.updateAverage(bm.getBatteryPercentage());
-
-
     disp.setCursor(64, 4*lineHeight);
     disp.println((String)bm.getBatteryLevel() + "V");
 	disp.setCursor(64, 5*lineHeight);
-	disp.println((String)round(sma.getAverage()) + "%");
+	disp.println((String)round(bm.getBatteryPercentage()) + "%");
 
 
     disp.display();
