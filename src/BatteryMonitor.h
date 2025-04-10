@@ -7,9 +7,9 @@
 
 #include <Arduino.h>
 
-class BatteryMonitor {
+class BatteryMonitor
+{
 public:
-
     void init();
     double getBatteryLevel();
     int getRaw();
@@ -20,9 +20,6 @@ private:
     int analogPin;
     double referenceVoltage;
     const int analogMax = 1023;
-
 };
 
-
-
-#endif //BATTERYMONITOR_H
+#endif // BATTERYMONITOR_H
