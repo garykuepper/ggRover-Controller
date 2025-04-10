@@ -57,8 +57,14 @@ void loop()
     {
         lastSendTime = currentTime;
         String msg = "Hello World";
-        xbee.send(msg);
-        Serial.println("Sent: " + msg);
+        if (xbee.send(msg))
+        {
+            Serial.println("Sent: " + msg);
+        }
+        else
+        {
+            Serial.println("Error: Failed to send message.");
+        }
     }
 
     // ✅ 3. Receive Data Every 0.5 Seconds
@@ -74,6 +80,14 @@ void loop()
                 Serial.print("Received: ");
                 Serial.println(receivedMsg);
             }
+            else
+            {
+                Serial.println("Error: Received empty message.");
+            }
+        }
+        else
+        {
+            Serial.println("No data available from Xbee.");
         }
     }
 }
